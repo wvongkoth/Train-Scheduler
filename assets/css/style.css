@@ -1,0 +1,16 @@
+body {
+	margin: 50px;
+}
+
+h1,p {
+	text-align: center;
+}
+
+.jumbotron {
+	background: purple;
+	color: yellow;
+}
+
+.panel-heading{
+	background: purple;
+}
