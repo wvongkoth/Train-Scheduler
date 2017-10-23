@@ -19,14 +19,44 @@
 
     var trainName = $("#name").val().trim();
     var destination = $("#destination").val().trim();
-    var firstTrainTime = moment($("#time").val().trim(), "HH:mm").format("X");
+    var firstTrainTime = moment($("#time").val().trim(), "HH:mm").format("");
     var frequency = $("#frequency").val().trim();
+
+    var newTrain = {
+      name: trainName,
+      destination: destination,
+      firstTrainTime: firstTrainTime,
+      frequency: frequency
+    };
+
+    database.ref().push(newTrain);
+
+    console.log(newTrain.name);
+    console.log(newTrain.destination);
+    console.log(newTrain.firstTrainTime);
+    console.log(newTrain.frequency);
+
+    $("#name").val("");
+    $("#destination").val("");
+    $("#time").val("");
+    $("#frequency").val("");
+  });
+
+  database.ref().on("child_added", function(childSnapshot, prevChildKey){
+    console.log(childSnapshot.val());
+
+    var trainName = childSnapshot.val().name;
+    var destination = childSnapshot.val().destination;
+    var firstTrainTime = childSnapshot.val().firstTrainTime;
+    var frequency = childSnapshot.val().frequency;
 
     console.log(trainName);
     console.log(destination);
     console.log(firstTrainTime);
     console.log(frequency);
 
-  })
+    $("#currentTrainSchedule > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + 
+                                              firstTrainTime + "</td><td>" + frequency + "</td></tr>");
+  });
 
-})
+});
