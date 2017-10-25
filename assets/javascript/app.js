@@ -19,7 +19,7 @@
 
     var trainName = $("#name").val().trim();
     var destination = $("#destination").val().trim();
-    var firstTrainTime = moment($("#time").val().trim(), "HH:mm").format("");
+    var firstTrainTime = moment($("#time").val().trim(), "HH:mm").format("HHmm");
     var frequency = $("#frequency").val().trim();
 
     var newTrain = {
@@ -31,10 +31,10 @@
 
     database.ref().push(newTrain);
 
-    console.log(newTrain.name);
-    console.log(newTrain.destination);
-    console.log(newTrain.firstTrainTime);
-    console.log(newTrain.frequency);
+    // console.log(newTrain.name);
+    // console.log(newTrain.destination);
+    // console.log(newTrain.firstTrainTime);
+    // console.log(newTrain.frequency);
 
     $("#name").val("");
     $("#destination").val("");
@@ -55,7 +55,7 @@
     console.log(firstTrainTime);
     console.log(frequency);
 
-    $("#currentTrainSchedule > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + 
+    $(".table > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + 
                                               firstTrainTime + "</td><td>" + frequency + "</td></tr>");
   });
 
